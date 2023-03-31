@@ -48,12 +48,12 @@ h1 {
 }
 
 a {
-  text-decoration: none;
   color: inherit;
   outline: none;
+  text-decoration: none;
 }
 
-.container {
+main {
   width: 120rem;
   margin: 0 auto;
 }
@@ -352,10 +352,10 @@ a {
   top: 10px;
   text-transform: capitalize;
 }
-/* 
-.game-img img:hover {
-  filter: brightness(40%);
-} */
+
+.feature-games a:hover {
+  color: #e94560;
+}
 
 .game-class-home-container {
   bottom: 10%;
@@ -365,7 +365,6 @@ a {
   background-color: #dee2e6;
   padding: 0.25rem 0.5rem;
   display: flex;
-  display: none;
   border-radius: 0.5rem;
   background-color: #343a40;
 }
@@ -426,6 +425,10 @@ a {
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 2rem;
+}
+
+.reviews-container a:hover {
+  color: #e94560;
 }
 
 .reviews-container ul {
@@ -926,6 +929,7 @@ a {
   justify-content: space-between;
 }
 
+.login-link,
 .submit-review-btn,
 .close-modal-btn,
 .open-modal-btn {
@@ -936,6 +940,7 @@ a {
   color: #f1f3f5;
 }
 
+.login-link,
 .open-modal-btn {
   background-color: #e94560;
 }
@@ -1239,6 +1244,28 @@ a {
   border-radius: 2rem;
 }
 
+footer {
+  background-color: #343a40;
+  padding: 2rem;
+  text-align: center;
+}
+
+footer p {
+  color: #dee2e6;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+footer a {
+  color: #666;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: #333;
+}
+
 /*border-radius: 0.5rem;
 box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 background-color: #f1f3f5;   */
@@ -1246,6 +1273,9 @@ background-color: #f1f3f5;   */
 /* ************************************* */
 
 @media (max-width: 768px) {
+  main {
+    min-height: calc(100vh - 100px);
+  }
   .game-wrapper {
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1;

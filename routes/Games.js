@@ -1,20 +1,16 @@
 const express = require("express");
 const router = express.Router();
 
-const apicalypse = require("apicalypse").default;
-const axios = require("axios").default;
-const requestOptions = require("../public/lib/headers");
 const isLoggedIn = require("../public/lib/isLoggedIn");
 const {
   getGameData,
   getPlatformData,
-  addConsoleType,
   getPublisherAndVideo,
   getPopularGames,
 } = require("../public/lib/apiHelpers");
 
-const { updateImg, resizeImg } = require("../public/lib/imgUtils");
-const { convertUnix, getDates } = require("../public/lib/dateUtils");
+const { resizeImg } = require("../public/lib/imgUtils");
+const { convertUnix } = require("../public/lib/dateUtils");
 const gamingSystems = require("../public/lib/gamingSys");
 
 const passport = require("passport");
@@ -44,7 +40,6 @@ router.get("/", async (req, res) => {
     for (let i = 0; i < userReviews.length; i++) {
       userReviews[i].game_cover = resizeImg(userReviews[i].game_cover, "thumb");
     }
-    console.log(userReviews[0].user_id.username);
     if (req.user) {
       const userData = await User.findById(user._id);
       const wishlist = userData.games.wishlist.map((game) => game.gameId);
@@ -256,7 +251,6 @@ router.get("/user/games/:action", async (req, res) => {
   try {
     const userData = await User.findById(userId);
     const gameList = userData.games[action];
-    console.log(userData);
     res.status(200).send({
       gameList,
       message: action,
@@ -309,8 +303,6 @@ router.post("/add-games/:action", async (req, res) => {
       gameList.splice(index, 1);
       await userData.save();
     }
-
-    console.log(userData);
     res.status(200).send({
       message: action,
     });
@@ -349,7 +341,6 @@ router.get("/edit-review/:id", async (req, res) => {
   try {
     const reviewData = await Review.findById(reviewId);
     res.json(reviewData);
-    console.log("EDIT ROUTE A");
   } catch (err) {
     console.log(err);
   }
@@ -363,7 +354,6 @@ router.patch("/edit-review/:id", async (req, res) => {
       rating,
       review_text,
     });
-    console.log("EDIT ROUTE B");
     res.redirect(`/game/${gameId}`);
   } catch (err) {
     console.log(err);
@@ -375,7 +365,6 @@ router.patch("/edit-review/:id", async (req, res) => {
 // ************************* LIKE/DISLIKE ************************* //
 
 router.post("/add-like/:id", isLoggedIn, async (req, res) => {
-  console.log(req.body);
   const reviewId = req.params.id;
   const userId = req.user._id;
   try {
