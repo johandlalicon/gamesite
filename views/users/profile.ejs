@@ -1,0 +1,77 @@
+<% layout('/layouts/boilerplate') %>
+<div class="profile-container">
+  <div class="about-user">
+    <h3><%= currentUser.username %></h3>
+    <h4>About Me</h4>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque
+      dolorem excepturi quod ab quisquam cumque vel nostrum eveniet. Ut
+      doloremque laboriosam modi veniam eius voluptas alias voluptatem
+      accusantium quibusdam similique?
+    </p>
+  </div>
+
+  <div class="user-activities">
+    <div class="user-nav">
+      <ul>
+        <li>
+          <button class="game-list-btn" value="games">Games</button>
+        </li>
+        <li>
+          <button class="review-list-btn" value="reviews">Reviews</button>
+        </li>
+      </ul>
+    </div>
+    <div class="games-tab active">
+      <ul>
+        <li>
+          <button class="game-category-btn" value="playing" type="submit">
+            Playing
+          </button>
+        </li>
+        <li>
+          <button class="game-category-btn" value="backlog" type="submit">
+            Backlog
+          </button>
+        </li>
+        <li>
+          <button class="game-category-btn" value="completed" type="submit">
+            Completed
+          </button>
+        </li>
+        <li>
+          <button class="game-category-btn" value="wishlist" type="submit">
+            Wishlist
+          </button>
+        </li>
+      </ul>
+      <div>
+        <div class="game-list-container"></div>
+      </div>
+    </div>
+    <div class="reviews-tab">
+      <% if(reviewData.length === 0) {%>
+      <h1>No reviews yet!</h1>
+      <% } else { %> <% reviewData.forEach(review => { %>
+      <div class="review-card-profile">
+        <div class="review-cover">
+          <img src="<%= review.game_cover %>" alt="" />
+          <span class="review-card-profile-rating">
+            Rating: <%= review.rating %>/10
+          </span>
+          <span class="review-card-likes-dislikes">
+            Likes: <%= review.likes.count %> Dislikes: <%= review.dislikes.count
+            %>
+          </span>
+        </div>
+        <h1><%= review.game_name %></h1>
+        <p><%= review.review_text %></p>
+      </div>
+      <% }); %>
+    </div>
+    <% } %>
+  </div>
+
+  <script src="/lib/javascripts/dashboard-tabs.js"></script>
+  <script src="/lib/javascripts/get-games.js"></script>
+</div>

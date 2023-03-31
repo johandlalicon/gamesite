@@ -1,0 +1,177 @@
+<% layout('/layouts/boilerplate') %>
+<h1 class="platform-type"><%= gamingSystems[platformId]%> Games</h1>
+<div class="platform-container">
+  <div class="topgames-header">
+    <h1>TOP RELEASE</h1>
+    <div class="carousel-controls-platform-topgames">
+      <button class="pre-btn prev-top-btn">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="pre-btn-icon"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15.75 19.5L8.25 12l7.5-7.5"
+          />
+        </svg>
+      </button>
+      <button class="nxt-btn next-top-btn">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="nxt-btn-icon"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M8.25 4.5l7.5 7.5-7.5 7.5"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>  
+  <div class="topgame-container">
+    
+    <% topGames.forEach((game,i) => { %>
+      
+    <div class="topgame-card <%= i === 0 ? "active" : '' %>">
+      <span class="rating"><%= Math.round(game.aggregated_rating) %></span>
+      <a href="/game/<%= game.id %>" class="link-game">
+      <img src="<%= game.screenshots[0].url %>" alt="" class="topgame-img" />
+      <div class="topgame-details">
+        <div class="thumbnail-container">
+          <img src="<%= game.cover.url %>" alt="" class="thumbnail-img" />
+        </div>
+        
+        <div class="topgame-text">
+          <h1><%= game.name %></h1>
+          <p><%= game.first_release_date %></p>
+        </div>
+      </div>
+    </div>
+    </a>
+    <% }); %>
+    
+  </div>
+  
+  <div class="newgames-header"><h1>RECENT RELEASE</h1>
+    <div class="carousel-controls-platform-recentgames" >
+    <button class="pre-btn prev-recent-btn">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="pre-btn-icon"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M15.75 19.5L8.25 12l7.5-7.5"
+        />
+      </svg>
+    </button>
+    <button class="nxt-btn next-recent-btn">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="nxt-btn-icon"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M8.25 4.5l7.5 7.5-7.5 7.5"
+        />
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div class="newgames-container">
+
+    <% recentGames.forEach(game => { %>
+      <a href="/game/<%= game.game.id %>">
+      <div class="recent-card">
+        <div class="recent-game-image">
+          <img src="<%= game.game.cover.url %>" class="" alt="">
+          
+        </div>
+        <div class="recent-game-info">
+          <h3><%= game.game.name %></h3>
+          <p><%= game.human %></p>
+        </div>
+      </div>
+    </a>
+    <% }); %>
+  </div>
+
+  <div class="upcoming-header"><h1>Upcoming Games</h1>
+    <div class="carousel-controls-platform-upcoming" >
+    <button class="pre-btn prev-upcoming-btn">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="pre-btn-icon"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M15.75 19.5L8.25 12l7.5-7.5"
+        />
+      </svg>
+    </button>
+    <button class="nxt-btn next-upcoming-btn">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="nxt-btn-icon"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M8.25 4.5l7.5 7.5-7.5 7.5"
+        />
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div class="upcoming-container">
+    <% upcomingGames.forEach(game => { %>
+      <a href="/game/<%= game.game.id %>">
+      <div class="upcoming-card">
+        <div class="upcoming-game-image">
+          <img src="<%= game.game.cover.url %>">
+        </div>
+        <div class="upcoming-game-info">
+          <h3><%= game.game.name %></h3>
+          <p><%= game.human %></p>
+        </div>
+      </div>
+    </a>
+    <% }); %>
+      
+  </div>
+</div>
+
+
+
+<script src="/lib/javascripts/platform-topgames-carousel.js"></script>
+<script src="/lib/javascripts/platform-recentgames-carousel.js"></script>
+<script src="/lib/javascripts/platform-upcoming-carousel.js"></script>

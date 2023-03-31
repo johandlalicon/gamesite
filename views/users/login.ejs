@@ -1,0 +1,33 @@
+<% layout('/layouts/boilerplate') %>
+<div class="forms-container">
+  <div class="login-header">
+    <h1 class="login-title">Login Here</h1>
+  </div>
+  <div class="login-body">
+    <div class="login-container">
+      <form action="/user/login" class="login-form" method="POST">
+        <input type="text" name="username" placeholder="Email" />
+        <input type="password" name="password" placeholder="Password" />
+        <button type="submit">LOGIN</button>
+      </form>
+      <div class="signup-text">
+        <i class="">No account yet?</i>
+        <button class="show-signup-form">SIGN UP!</button>
+      </div>
+    </div>
+    <div class="signup-container hidden">
+      <form action="/user/register" class="signup-form" method="POST">
+        <input type="text" name="username" placeholder="Username" />
+        <input type="text" name="email" placeholder="Email" />
+        <input type="password" name="password" placeholder="Password" />
+        <button type="submit">SUBMIT</button>
+      </form>
+      <div class="login-text">
+        <i class="">Already have an account?</i>
+        <button class="show-login-form">LOGIN!</button>
+      </div>
+    </div>
+    <div class="flash-error"><i><%= messages %></i></div>
+  </div>
+</div>
+<script src="/lib/javascripts/login-signup-toggle.js"></script>

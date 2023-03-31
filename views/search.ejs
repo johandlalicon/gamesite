@@ -1,0 +1,14 @@
+<% layout('/layouts/boilerplate') %>
+
+<h1>Search Results</h1>
+<div class="results-container">
+  <% searchResults.forEach(game => { %>
+
+  <div class="search-game">
+    <img src="<%= game.cover.url %>" alt="" />
+    <a href="/game/<%= game.id %>">
+      <p><%= game.name %> (<%= game.first_release_date %>)</p>
+    </a>
+  </div>
+  <% }); %>
+</div>
