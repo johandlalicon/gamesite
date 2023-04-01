@@ -10,11 +10,6 @@ dropDownMenu.forEach((menu) => {
   });
 });
 
-hamburgerMenu.addEventListener("click", (event) => {
-  console.log("click");
-  navWrapper.classList.add("active");
-});
-
 const hamburgerBtn = document.querySelector(".hamburger-btn");
 const navbarMenu = document.querySelector(".navbar-menu");
 

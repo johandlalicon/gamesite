@@ -35,6 +35,7 @@ html {
   font-size: 62.5%;
 }
 body {
+  max-width: 100%;
   font-family: "Montserrat", sans-serif;
   color: #343a40;
   background-color: #dee2e6;
@@ -54,23 +55,20 @@ a {
 }
 
 main {
-  width: 120rem;
+  max-width: 80rem;
   margin: 0 auto;
 }
 
 /*********** LOGIN ***********/
 
 .forms-container {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   border: 0.01rem solid #212529;
   border-radius: 0.5rem;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   background-color: #f1f3f5;
   width: 40rem;
   max-width: 80%;
+  margin: 2rem auto;
 }
 
 .login-container,
@@ -485,6 +483,21 @@ main {
   place-items: center;
 }
 
+.user-reviews-wrapper {
+  text-align: center;
+}
+
+.user-reviews-wrapper svg {
+  height: 2rem;
+  width: 2rem;
+}
+
+.user-reviews-wrapper span {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .user-reviews-details {
   font-size: 1.4rem;
   display: flex;
@@ -492,13 +505,7 @@ main {
   gap: 0.5rem;
 }
 
-.user-reviews-details span {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.user-reviews-home img {
+.user-reviews-details .user-reviews-home img {
   max-width: 100%;
   height: auto;
 }
@@ -679,7 +686,6 @@ main {
   position: relative;
   margin: 2rem auto;
   overflow: hidden;
-  height: 40rem;
 }
 
 .image-carousel {
@@ -721,9 +727,9 @@ main {
 .game-wrapper {
   margin: 2rem auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 5rem minmax(auto, 20rem) 1fr;
+  grid-template-columns: 1fr;
   gap: 2rem;
+  width: 100%;
 }
 
 .cover-container {
@@ -768,7 +774,7 @@ main {
   grid-row: 2;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
   align-self: flex-start;
 }
 
@@ -803,10 +809,13 @@ main {
   grid-column: 1/-1;
   grid-row: 3/4;
 }
+
+.game-trailer iframe {
+  width: 100%;
+}
 .review-section {
   padding: 2rem;
-  grid-row: 1;
-  grid-column: 2/-1;
+  grid-column: 1;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -938,6 +947,7 @@ main {
   border: none;
   cursor: pointer;
   color: #f1f3f5;
+  display: inline-block;
 }
 
 .login-link,
@@ -1129,13 +1139,17 @@ main {
   margin: 2rem;
 }
 
-/* ********************************** */
+/* PROFILE */
 
 .profile-container {
   margin-top: 5rem;
   display: grid;
   grid-template-columns: 20rem 1fr;
   gap: 5rem;
+}
+
+.user-activities {
+  grid-column: 2;
 }
 
 .about-user {
@@ -1145,7 +1159,7 @@ main {
 .user-nav ul {
   list-style: none;
   display: flex;
-  gap: 5rem;
+  gap: 3rem;
 }
 
 .user-nav button {
@@ -1214,13 +1228,12 @@ main {
 
 .game-list-container {
   margin-top: 2rem;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
 }
 
-.review-cover,
-.user-games-card {
+.review-cover {
   height: 14rem;
   width: 14rem;
 }
@@ -1273,25 +1286,87 @@ background-color: #f1f3f5;   */
 /* ************************************* */
 
 @media (max-width: 768px) {
-  main {
-    min-height: calc(100vh - 100px);
-  }
-  .game-wrapper {
-    grid-template-rows: 1fr 1fr;
-    grid-template-columns: 1;
-    justify-content: center;
+  /* GAME PAGE */
+  .game-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
-  .game-details {
-    grid-row: 1;
-    grid-column: 1;
+  .additional-info {
+    gap: 0.5rem;
+    align-self: center;
+  }
+
+  .game-wrapper {
+    display: grid;
+    place-items: center;
+  }
+
+  .game-trailer {
+    align-self: center;
+    height: auto;
+  }
+
+  .cover-container {
+    align-self: center;
   }
 
   .review-section {
+    justify-self: flex-start;
+  }
+
+  /* HOME PAGE */
+  .about-site {
+    display: flex;
+    flex-direction: column;
+    grid-column: 1;
+  }
+
+  .popular-container {
     grid-row: 2;
     grid-column: 1;
   }
 
+  .recent-user-reviews {
+    grid-row: 1;
+    grid-column: 1/-1;
+  }
+
+  .coming-soon-container {
+    grid-row: 2;
+    display: flex;
+  }
+
+  /* PROFILE */
+
+  .about-user {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .about-user p {
+    text-align: start;
+    font-size: 1.4rem;
+  }
+  .profile-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .game-list-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 2rem;
+  }
+
+  .user-games-card {
+    margin-bottom: 5rem;
+  }
+
+  /* NAVBAR */
   .hamburger-btn {
     display: block;
   }
@@ -1315,6 +1390,7 @@ background-color: #f1f3f5;   */
   }
 
   .navbar-menu ul {
+    margin-top: 1rem;
     flex-direction: column;
     width: 100%;
   }
