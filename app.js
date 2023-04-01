@@ -24,7 +24,7 @@ app.engine("ejs", ejsMate);
 
 app.use(methodOverride("_method"));
 
-const dbUrl = "mongodb://localhost:27017/gamesite";
+const dbUrl = process.env.DB_URL;
 // process.env.DB_URL;
 // mongodb://localhost:27017/gamesite
 
