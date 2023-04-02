@@ -25,8 +25,6 @@ app.engine("ejs", ejsMate);
 app.use(methodOverride("_method"));
 
 const dbUrl = process.env.DB_URL;
-// process.env.DB_URL;
-// mongodb://localhost:27017/gamesite
 
 const secret = process.env.SECRET || "metalgearsolid";
 
