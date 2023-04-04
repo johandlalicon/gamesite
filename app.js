@@ -28,8 +28,16 @@ const dbUrl = process.env.DB_URL;
 
 const secret = process.env.SECRET || "metalgearsolid";
 
+const mongoClientPromise = new Promise((resolve) => {
+  mongoose.connection.on("connected", () => {
+    const client = mongoose.connection.getClient();
+    resolve(client);
+  });
+});
+
 const store = MongoStore.create({
   mongoUrl: dbUrl,
+  clientPromise: mongoClientPromise,
   touchAfter: 24 * 3600,
   crypto: {
     secret,
