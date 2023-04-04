@@ -28,11 +28,21 @@ const dbUrl = process.env.DB_URL;
 
 const secret = process.env.SECRET || "metalgearsolid";
 
+const store = MongoStore.create({
+  mongoUrl: dbUrl,
+  touchAfter: 24 * 3600,
+  crypto: {
+    secret,
+  },
+});
+
+store.on("error", function (e) {
+  console.log("Session Store Error", e);
+});
+
 const sessionConfig = {
-  store: MongoStore.create({
-    mongoUrl: dbUrl,
-    touchAfter: 24 * 3600,
-  }),
+  store,
+  name: "session",
   secret,
   resave: false,
   saveUninitialize: false,
@@ -66,6 +76,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/", Games);
+
 mongoose
   .connect(dbUrl, {
     useNewUrlParser: true,
